@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>以巧破力〜攻克非牛頓流體之探討 - 實驗流程</title>
+    <style>
+        body { font-family: "Microsoft JhengHei", sans-serif; line-height: 1.6; max-width: 800px; margin: 20px auto; padding: 20px; background-color: #f4f4f9; }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
+        .step { background: white; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; }
+        .step-header { background: #3498db; color: white; padding: 15px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
+        .step-header:hover { background: #2980b9; }
+        .step-content { padding: 20px; display: none; background: #fff; }
+        .step.active .step-content { display: block; }
+        .step.active .step-header { background: #2c3e50; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h1>以巧破力〜攻克非牛頓流體之探討</h1>
+
+    <!-- 步驟 1 -->
+    <div class="step">
+        <div class="step-header" onclick="toggleStep(this)"><span>步驟一：準備研究設備與材料</span><span>+</span></div>
+        <div class="step-content">
+            <p>根據來源 [1]，請備齊以下實驗器材：</p>
+            <ul>
+                <li><strong>主要材料：</strong>太白粉、水。</li>
+                <li><strong>測量工具：</strong>量角器、三角尺、自製塑膠盤。</li>
+                <li><strong>輔助工具：</strong>湯匙、鐵盆、綿繩、墊片、鑼帽、扳手。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 步驟 2 -->
+    <div class="step">
+        <div class="step-header" onclick="toggleStep(this)"><span>步驟二：非牛頓流體之調配比例</span><span>+</span></div>
+        <div class="step-content">
+            <p>實驗將太白粉與水依不同比例混合，以模擬不同環境下的淤泥情況 [1]：</p>
+            <table>
+                <tr>
+                    <th>比例 (粉:水)</th>
+                    <th>組別性質</th>
+                    <th>實驗表徵</th>
+                </tr>
+                <tr>
+                    <td>3 : 1</td>
+                    <td><strong>乾組</strong></td>
+                    <td>特徵明顯，但材質偏乾</td>
+                </tr>
+                <tr>
+                    <td>2 : 1</td>
+                    <td><strong>一般組</strong></td>
+                    <td>特徵最為明顯</td>
+                </tr>
+                <tr>
+                    <td>1.5 : 1</td>
+                    <td><strong>濕組</strong></td>
+                    <td>特徵明顯，但材質偏濕</td>
+                </tr>
+            </table>
+            <p>註：1.2:1 與 1:1 的比例完全無法表現非牛頓流體特徵 [1]。</p>
+        </div>
+    </div>
+
+    <!-- 步驟 3 -->
+    <div class="step">
+        <div class="step-header" onclick="toggleStep(this)"><span>步驟三：現有清淤工具效能評估</span><span>+</span></div>
+        <div class="step-content">
+            <p>針對市面上隨手可得的工具進行分析，選擇最適合突破非牛頓流體性質淤泥的工具 [2]：</p>
+            <ul>
+                <li><strong>圓鍬（首選）：</strong>前端湯匙狀鐵片有利於鬆動淤泥。</li>
+                <li><strong>平頭鍬：</strong>前端平整，難以切入破壞。</li>
+                <li><strong>十字鎬：</strong>揮動半徑過大，不適於狹小空間，且易造成意外損壞。</li>
+                <li><strong>曬穀耙：</strong>鐵片太薄且過長，僅適合高含水量的戶外淤泥。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 步驟 4 -->
+    <div class="step">
+        <div class="step-header" onclick="toggleStep(this)"><span>步驟四：探討與應用（力的傳導與破除）</span><span>+</span></div>
+        <div class="step-content">
+            <p>根據物理特性，進一步探討如何省力地清除淤泥 [3-5]：</p>
+            <ol>
+                <li><strong>理解「鎖定態」：</strong>用力撞擊時，顆粒會產生「阻塞效應 (Jamming)」使摩擦力瞬間爆發 [4]。</li>
+                <li><strong>破除方法：</strong>
+                    <ul>
+                        <li>增加<strong>振動功能</strong>以破壞其力鏈結構 [3]。</li>
+                        <li>使用<strong>鐵氟龍貼面</strong>以降低摩擦係數及抗黏性 [3]。</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function toggleStep(header) {
+            const step = header.parentElement;
+            step.classList.toggle('active');
+            const icon = header.querySelector('span:last-child');
+            icon.textContent = step.classList.contains('active') ? '-' : '+';
+        }
+    </script>
+
+</body>
+</html>
