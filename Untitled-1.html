@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💪 PRIDE GYM 1A2B 💪</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial,sans-serif;
+    color:white;
+
+    background:
+    radial-gradient(circle at top,#ff00aa 0%,#120014 35%,#000 100%);
+}
+
+.container{
+    width:420px;
+    padding:30px;
+    text-align:center;
+
+    background:rgba(0,0,0,.75);
+    border:2px solid #ff00aa;
+    border-radius:25px;
+
+    box-shadow:
+    0 0 20px #ff00aa,
+    0 0 40px #ff00aa55;
+}
+
+h1{
+    font-size:2.2rem;
+    margin-bottom:10px;
+    text-transform:uppercase;
+
+    color:#fff;
+
+    text-shadow:
+    0 0 10px #ff00aa,
+    0 0 25px #00d9ff;
+}
+
+.tagline{
+    color:#ffb6e8;
+    margin-bottom:20px;
+    font-weight:bold;
+}
+
+.gym-icon{
+    font-size:4rem;
+    margin-bottom:10px;
+}
+
+input{
+    width:180px;
+    padding:12px;
+
+    border:none;
+    border-radius:12px;
+
+    text-align:center;
+    font-size:1.2rem;
+    font-weight:bold;
+}
+
+button{
+    margin:8px;
+    padding:12px 18px;
+
+    border:none;
+    border-radius:12px;
+
+    cursor:pointer;
+    font-weight:bold;
+    font-size:1rem;
+
+    color:white;
+
+    background:linear-gradient(
+        45deg,
+        #ff00aa,
+        #00d9ff
+    );
+
+    box-shadow:0 0 15px rgba(255,0,170,.6);
+
+    transition:.2s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+#message{
+    margin-top:15px;
+    font-size:1.2rem;
+    font-weight:bold;
+}
+
+#history{
+    margin-top:20px;
+    max-height:250px;
+    overflow:auto;
+}
+
+.record{
+    margin:6px 0;
+    padding:10px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.08);
+}
+
+.record b{
+    color:#00eaff;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="gym-icon">💪</div>
+
+    <h1>PRIDE GYM 1A2B</h1>
+
+    <div class="tagline">
+        Neon • Muscles • Numbers
+    </div>
+
+    <input id="guess" maxlength="4" placeholder="1234">
+
+    <br><br>
+
+    <button onclick="checkGuess()">🔥 挑戰</button>
+    <button onclick="newGame()">🏋️ 重開</button>
+
+    <div id="message"></div>
+
+    <div id="history"></div>
+
+</div>
+
+<script>
+let answer="";
+
+function generateAnswer(){
+    let nums="0123456789".split("");
+    nums.sort(()=>Math.random()-0.5);
+    return nums.slice(0,4).join("");
+}
+
+function newGame(){
+    answer=generateAnswer();
+    document.getElementById("history").innerHTML="";
+    document.getElementById("message").innerHTML="";
+    document.getElementById("guess").value="";
+}
+
+function checkGuess(){
+
+    const guess=document.getElementById("guess").value;
+
+    if(!/^\\d{4}$/.test(guess)){
+        alert("請輸入4位數字");
+        return;
+    }
+
+    if(new Set(guess).size!==4){
+        alert("數字不可重複");
+        return;
+    }
+
+    let A=0;
+    let B=0;
+
+    for(let i=0;i<4;i++){
+
+        if(guess[i]===answer[i]){
+            A++;
+        }
+        else if(answer.includes(guess[i])){
+            B++;
+        }
+    }
+
+    const result=`${A}A${B}B`;
+
+    const div=document.createElement("div");
+    div.className="record";
+    div.innerHTML=`💪 ${guess} ➜ <b>${result}</b>`;
+
+    document.getElementById("history").prepend(div);
+
+    if(A===4){
+        document.getElementById("message").innerHTML=
+        `🎉 Gym King！答案就是 ${answer} 👑`;
+    }
+
+    document.getElementById("guess").value="";
+}
+
+newGame();
+</script>
+
+</body>
+</html>
